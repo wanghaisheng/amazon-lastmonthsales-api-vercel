@@ -21,7 +21,7 @@ async def hello_message(dto: ISayHelloDto):
     return {"message": f"Hello {dto.message}"}
 
 
-@app.get("/amz/{keyword}")
+@app.get("/api/amz/{keyword}")
 async def getLastMonthsales(keyword: str):
     result = run(keyword)
     return {"keyword": keyword, "json": result}
