@@ -3,10 +3,9 @@ const { chromium: playwright } = require('playwright-core')
 const sparticuzChromium = require("@sparticuz/chromium-min")
 
 import { unquote } from 'querystring'
-import { setLocale } from '../../../saas/shopconan/asoul/build/make-front-end/src/.umi/plugin-locale/localeExports'
 
-const amazonUrl = 'https://www.amazon.co.jp'
-// const amazonUrl = 'https://www.amazon.com';
+// const amazonUrl = 'https://www.amazon.co.jp'
+const amazonUrl = 'https://www.amazon.com'
 const formatKeywords = (keywords: string) => {
   return keywords.replace(/\s+/g, '%20')
 }
