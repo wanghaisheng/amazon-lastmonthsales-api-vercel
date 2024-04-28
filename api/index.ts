@@ -104,6 +104,9 @@ export default async function handler(
           const page = await context.newPage()
           console.log("new page")
           await page.goto(amazonUrl)
+          console.log(await response.status())
+          console.log(await response.text())
+
           await page.waitForLoadState()
           console.log('access amazon home page')
           await page.getByPlaceholder('Search Amazon').fill(inputKeywords)
