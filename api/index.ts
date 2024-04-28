@@ -2,8 +2,6 @@ import { NextApiRequest, NextApiResponse } from "next"
 const { chromium: playwright } = require('playwright-core')
 const sparticuzChromium = require("@sparticuz/chromium-min")
 
-import { unquote } from 'querystring'
-
 // const amazonUrl = 'https://www.amazon.co.jp'
 const amazonUrl = 'https://www.amazon.com'
 const formatKeywords = (keywords: string) => {
@@ -45,7 +43,7 @@ const fullyDecode = (strUri: string): string => {
   let prevUri = ''
   while (strUri !== prevUri) {
     prevUri = strUri
-    strUri = unquote(strUri)
+    strUri = decodeURIComponent(strUri)
   }
   return strUri
 }
