@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from "next"
 const { chromium: playwright } = require('playwright-core')
 const sparticuzChromium = require("@sparticuz/chromium-min")
 
-// const amazonUrl = 'https://www.amazon.co.jp'
-const amazonUrl = 'https://www.amazon.com'
+const amazonUrl = 'https://www.amazon.co.jp'
+// const amazonUrl = 'https://www.amazon.com'
 const formatKeywords = (keywords: string) => {
   return keywords.replace(/\s+/g, '%20')
 }
