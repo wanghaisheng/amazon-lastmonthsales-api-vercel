@@ -88,7 +88,7 @@ export default async function handler(
           console.log("Formatted keywords:", formattedKeywords)
         } else {
           formattedKeywords = inputKeywords
-          console.log("No spaces found in inputKeywords.")
+          console.log("No spaces found in inputKeywords.",formattedKeywords)
         }
 
         try {
