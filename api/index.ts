@@ -367,7 +367,11 @@ export default async function handler(
           try{
             await page.goto("https://radar.cloudflare.com/scan");
             console.log('access amazon home page')
+            console.log(await page.locator('#search').isVisible())
+            console.log(await page.getByPlaceholder('Enter a URL, e.g. https://example.com').isVisible())
+            console.log(await page.locator('//*[@id="root"]/main/div[2]/form/fieldset/div/input').isVisible())
 
+            
             await page.locator('#search').click();
             console.log('click home page')
 
@@ -376,8 +380,6 @@ export default async function handler(
 
             await page.getByRole('button', { name: 'Public' }).click();
             console.log('submit home page')
-
-            await page.waitForLoadState()
             let uuid=page.url().replace("https://radar.cloudflare.com/scan/", "")
             console.log('new url home page')
 
