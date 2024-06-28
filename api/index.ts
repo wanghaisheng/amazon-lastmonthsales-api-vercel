@@ -108,13 +108,15 @@ export default async function handler(
 
           try{
             await page.goto(amazonUrl)
+            console.log('access amazon home page')
+
 
         } catch (error) {
           console.error(`Error for :`, error);
       }
 
           await page.waitForLoadState()
-          console.log('access amazon home page')
+          console.log('fill',inputKeywords)
           await page.getByLabel('Search Amazon').fill(inputKeywords)
           await page.keyboard.press('Enter')
           console.log('type query words')
