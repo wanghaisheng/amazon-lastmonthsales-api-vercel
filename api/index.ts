@@ -368,10 +368,10 @@ export default async function handler(
             await page.goto("https://radar.cloudflare.com/scan");
             console.log('access amazon home page')
 
-            await page.getByPlaceholder('Enter a URL, e.g. https://').click();
+            await page.locator('#search').click();
             console.log('click home page')
 
-            await page.getByPlaceholder('Enter a URL, e.g. https://').fill(url);
+            await page.locator('#search').fill(url);
             console.log('fill home page')
 
             await page.getByRole('button', { name: 'Public' }).click();
