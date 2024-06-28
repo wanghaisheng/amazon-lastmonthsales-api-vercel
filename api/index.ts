@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 const { chromium: playwright } = require('playwright-core')
 const sparticuzChromium = require("@sparticuz/chromium-min")
 
-const amazonUrl = 'https://www.amazon.co.jp'
+const amazonUrl = 'https://www.amazon.com'
 // const amazonUrl = 'https://www.amazon.com'
 const formatKeywords = (keywords: string) => {
   return keywords.replace(/\s+/g, '%20')
@@ -106,8 +106,6 @@ export default async function handler(
           const page = await context.newPage()
           console.log("new page")
           await page.goto(amazonUrl)
-          console.log(await response.status())
-          console.log(await response.text())
 
           await page.waitForLoadState()
           console.log('access amazon home page')
