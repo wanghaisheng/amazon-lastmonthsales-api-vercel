@@ -322,7 +322,78 @@ export default async function handler(
           console.error('Navigation error:', error)
           // Handle the error appropriately
         }
-      } else {
+      }
+      else if (request.url.includes('/cf/screen')) {
+
+        let inputKeywords = request.url?.replace("/api/amz/", "").trim()
+        const out: Output = {
+          keyWord: inputKeywords,
+          startDate: new Date().toLocaleString(),
+          targetUrls: [],
+          Cards: [],
+        }
+        if (!inputKeywords) {
+          response.status(400).send("Missing inputKeywords parameter")
+          return
+        }
+
+        // Example usage
+        // const inputKeywords = "sectional sofa"
+        let formattedKeywords=''
+        if (inputKeywords.includes("%20")) {
+          formattedKeywords = formatKeywords(inputKeywords)
+          console.log("Formatted keywords:", formattedKeywords)
+        } else {
+          formattedKeywords = inputKeywords
+          console.log("No spaces found in inputKeywords.",formattedKeywords)
+        }
+
+        try {
+          const browser = await playwright.launch({
+            args: sparticuzChromium.args,
+
+            executablePath: await sparticuzChromium.executablePath("https://github.com/Sparticuz/chromium/releases/download/v123.0.0/chromium-v123.0.0-pack.tar"),
+            headless: sparticuzChromium.headless,
+          })
+          console.log("Chromium:", await browser.version())
+
+          const context = await browser.newContext()
+          console.log("new context")
+
+          const page = await context.newPage()
+          console.log("new page")
+          https://www.amazon.com/s?k=4th+of+july+shirts+women
+          try{
+            await page.goto("https://radar.cloudflare.com/scan");
+            console.log('access amazon home page')
+
+
+        } catch (error) {
+          console.error(`Error for :`, error);
+      }
+
+      await page.locator(".a op oq or os").fill(url)
+      await page.locator('#root > main > div.radar-grid.gf.bk.bh.ak.gg.gh > form > fieldset > div > button')
+      await page.click('#root > main > div.radar-grid.gf.bk.bh.ak.gg.gh > form > fieldset > div > button')
+      await page.locator('.radar-link bf ea dj ds dr').isVisible()
+      const uuid = await page.locator('a.radar-link bf ea dj ds dr').getAttribute('href')
+      // const spanText = await page.$eval('span.mySpan', span => span.textContent);
+    
+      await browser.close();
+      return new NextApiResponse({'url':url,'uuid':uuid}, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+
+    }catch{
+
+
+    }
+
+      }
+      else {
       }
 
       break
