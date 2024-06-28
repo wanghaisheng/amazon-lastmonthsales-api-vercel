@@ -68,7 +68,7 @@ export default async function handler(
 
       if (request.url.includes('/api/amz')) {
 
-        let inputKeywords = request.url?.replace("/api/amz", "")
+        let inputKeywords = request.url?.replace("/api/amz/", "")
         const out: Output = {
           keyWord: inputKeywords,
           startDate: new Date().toLocaleString(),
@@ -82,7 +82,7 @@ export default async function handler(
 
         // Example usage
         // const inputKeywords = "sectional sofa"
-        let formattedKeywords
+        let formattedKeywords=''
         if (inputKeywords.includes(" ")) {
           formattedKeywords = formatKeywords(inputKeywords)
           console.log("Formatted keywords:", formattedKeywords)
