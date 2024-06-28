@@ -115,7 +115,7 @@ export default async function handler(
 
           await page.waitForLoadState()
           console.log('access amazon home page')
-          await page.getByPlaceholder('Search Amazon').fill(inputKeywords)
+          await page.getByLabel('Search Amazon').fill(inputKeywords)
           await page.keyboard.press('Enter')
           console.log('type query words')
           await page.waitForLoadState()
