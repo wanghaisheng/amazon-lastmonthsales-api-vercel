@@ -7,7 +7,7 @@ const sparticuzChromium = require("@sparticuz/chromium-min")
 const amazonUrl = 'https://www.amazon.com'
 // const amazonUrl = 'https://www.amazon.com'
 const formatKeywords = (keywords: string) => {
-  return keywords.replace(/\s+/g, '%20')
+  return keywords.replace('%20', '+')
 }
 interface Card {
   id: string
@@ -68,7 +68,7 @@ export default async function handler(
 
       if (request.url.includes('/api/amz')) {
 
-        let inputKeywords = request.url?.replace("/api/amz/", "")
+        let inputKeywords = request.url?.replace("/api/amz/", "").trim()
         const out: Output = {
           keyWord: inputKeywords,
           startDate: new Date().toLocaleString(),
@@ -83,7 +83,7 @@ export default async function handler(
         // Example usage
         // const inputKeywords = "sectional sofa"
         let formattedKeywords=''
-        if (inputKeywords.includes(" ")) {
+        if (inputKeywords.includes("%20")) {
           formattedKeywords = formatKeywords(inputKeywords)
           console.log("Formatted keywords:", formattedKeywords)
         } else {
@@ -105,9 +105,9 @@ export default async function handler(
 
           const page = await context.newPage()
           console.log("new page")
-
+          https://www.amazon.com/s?k=4th+of+july+shirts+women
           try{
-            await page.goto(amazonUrl,{ timeout: 10000 })
+            await page.goto("https://www.amazon.com/s?k="+formattedKeywords,{ timeout: 10000 })
             console.log('access amazon home page')
 
 
@@ -116,11 +116,11 @@ export default async function handler(
       }
 
           await page.waitForLoadState()
-          console.log('fill',inputKeywords)
-          await page.getByLabel('Search Amazon').fill(inputKeywords)
-          await page.keyboard.press('Enter')
-          console.log('type query words')
-          await page.waitForLoadState()
+          // console.log('fill',inputKeywords)
+          // await page.getByLabel('Search Amazon').fill(inputKeywords)
+          // await page.keyboard.press('Enter')
+          // console.log('type query words')
+          // await page.waitForLoadState()
           let targetUrl = page.url()
           console.log(`current_url: ${targetUrl}`)
           out.targetUrls.push(targetUrl)
