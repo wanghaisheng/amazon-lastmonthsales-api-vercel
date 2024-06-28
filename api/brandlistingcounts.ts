@@ -81,7 +81,15 @@ export default async function handler(
         }
 
         // Example usage
-        // const inputKeywords = "sectional sofa"
+        // const brandname = "NEWKEY"
+
+        // https://www.amazon.com/stores/NEWKEY/page/A3C50A98-5AD5-44BC-B7C3-472C412D8650?ref_=ast_bln&store_ref=bl_ast_dp_brandLogo_sto
+
+        // https://www.amazon.com/s?k=NEWKEY&ref=nb_sb_noss
+
+        //  get listing count 
+        // get sellername in listings
+
         let formattedKeywords
         if (inputKeywords.includes(" ")) {
           formattedKeywords = formatKeywords(inputKeywords)
