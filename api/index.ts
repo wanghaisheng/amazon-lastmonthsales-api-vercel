@@ -373,11 +373,18 @@ export default async function handler(
           console.error(`Error for :`, error);
       }
 
-      await page.locator(".a op oq or os").fill(url)
-      await page.locator('#root > main > div.radar-grid.gf.bk.bh.ak.gg.gh > form > fieldset > div > button')
-      await page.click('#root > main > div.radar-grid.gf.bk.bh.ak.gg.gh > form > fieldset > div > button')
-      await page.locator('.radar-link bf ea dj ds dr').isVisible()
-      const uuid = await page.locator('a.radar-link bf ea dj ds dr').getAttribute('href')
+
+      await page.getByPlaceholder('Enter a URL, e.g. https://').click();
+      await page.getByPlaceholder('Enter a URL, e.g. https://').fill(url);
+      await page.getByRole('button', { name: 'Public' }).click();
+      await page.waitForLoadState()
+      let uuid=page.url().replace("https://radar.cloudflare.com/scan/", "")
+      if(uuid.contains('/summary')){
+
+        uuid=uuid.replace('/summary','')
+      }else{
+        console.log('no summary')
+      }
       // const spanText = await page.$eval('span.mySpan', span => span.textContent);
     
       await browser.close();
