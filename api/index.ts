@@ -105,7 +105,7 @@ export default async function handler(
 
           const page = await context.newPage()
           console.log("new page")
-          https://www.amazon.com/s?k=4th+of+july+shirts+women
+          // https://www.amazon.com/s?k=4th+of+july+shirts+women
           try{
             await page.goto("https://www.amazon.com/s?k="+formattedKeywords,{ timeout: 10000 })
             console.log('access amazon home page')
@@ -325,7 +325,7 @@ export default async function handler(
       }
       else if (request.url.includes('/cf/screen')) {
 
-        let inputKeywords = request.url?.replace("/api/amz/", "").trim()
+        let inputKeywords = request.url?.replace("/cf/screen/", "").trim()
         const out: Output = {
           keyWord: inputKeywords,
           startDate: new Date().toLocaleString(),
@@ -347,6 +347,7 @@ export default async function handler(
           formattedKeywords = inputKeywords
           console.log("No spaces found in inputKeywords.",formattedKeywords)
         }
+        const url =formattedKeywords
 
         try {
           const browser = await playwright.launch({
@@ -362,7 +363,7 @@ export default async function handler(
 
           const page = await context.newPage()
           console.log("new page")
-          https://www.amazon.com/s?k=4th+of+july+shirts+women
+          // https://www.amazon.com/s?k=4th+of+july+shirts+women
           try{
             await page.goto("https://radar.cloudflare.com/scan");
             console.log('access amazon home page')
