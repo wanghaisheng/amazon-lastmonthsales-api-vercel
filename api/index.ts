@@ -368,31 +368,31 @@ export default async function handler(
             await page.goto("https://radar.cloudflare.com/scan");
             console.log('access amazon home page')
 
+            await page.getByPlaceholder('Enter a URL, e.g. https://').click();
+            await page.getByPlaceholder('Enter a URL, e.g. https://').fill(url);
+            await page.getByRole('button', { name: 'Public' }).click();
+            await page.waitForLoadState()
+            let uuid=page.url().replace("https://radar.cloudflare.com/scan/", "")
+            if(uuid.contains('/summary')){
+      
+              uuid=uuid.replace('/summary','')
+            }else{
+              console.log('no summary')
+            }
+            // const spanText = await page.$eval('span.mySpan', span => span.textContent);
+          
+            await browser.close();
+            return new NextApiResponse({'url':url,'uuid':uuid}, {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+      
 
         } catch (error) {
           console.error(`Error for :`, error);
       }
 
-
-      await page.getByPlaceholder('Enter a URL, e.g. https://').click();
-      await page.getByPlaceholder('Enter a URL, e.g. https://').fill(url);
-      await page.getByRole('button', { name: 'Public' }).click();
-      await page.waitForLoadState()
-      let uuid=page.url().replace("https://radar.cloudflare.com/scan/", "")
-      if(uuid.contains('/summary')){
-
-        uuid=uuid.replace('/summary','')
-      }else{
-        console.log('no summary')
-      }
-      // const spanText = await page.$eval('span.mySpan', span => span.textContent);
-    
-      await browser.close();
-      return new NextApiResponse({'url':url,'uuid':uuid}, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
 
 
     }catch{
