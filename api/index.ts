@@ -105,8 +105,6 @@ export default async function handler(
 
           const page = await context.newPage()
           console.log("new page")
-          await page.goto('https://www.baidu.com')
-          console.log('11')
 
           try{
             await page.goto(amazonUrl)
