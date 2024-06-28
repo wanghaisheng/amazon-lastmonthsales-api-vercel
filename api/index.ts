@@ -105,6 +105,8 @@ export default async function handler(
 
           const page = await context.newPage()
           console.log("new page")
+          await page.goto('www.baidu.com')
+          console.log('11')
           await page.goto(amazonUrl)
 
           await page.waitForLoadState()
