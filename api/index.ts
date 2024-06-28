@@ -107,7 +107,7 @@ export default async function handler(
           console.log("new page")
 
           try{
-            await page.goto(amazonUrl)
+            await page.goto(amazonUrl,{ timeout: 10000 })
             console.log('access amazon home page')
 
 
