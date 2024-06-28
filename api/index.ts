@@ -369,10 +369,18 @@ export default async function handler(
             console.log('access amazon home page')
 
             await page.getByPlaceholder('Enter a URL, e.g. https://').click();
+            console.log('click home page')
+
             await page.getByPlaceholder('Enter a URL, e.g. https://').fill(url);
+            console.log('fill home page')
+
             await page.getByRole('button', { name: 'Public' }).click();
+            console.log('submit home page')
+
             await page.waitForLoadState()
             let uuid=page.url().replace("https://radar.cloudflare.com/scan/", "")
+            console.log('new url home page')
+
             if(uuid.contains('/summary')){
       
               uuid=uuid.replace('/summary','')
